@@ -1,13 +1,22 @@
+![Doggo](https://github.com/shant1235/QuadDoggo/blob/main/photos/version2.JPG)
+![LegTop](https://github.com/shant1235/QuadDoggo/blob/main/photos/topViewLeg.JPG)
+![Leg](https://github.com/shant1235/QuadDoggo/blob/main/photos/sideViewLeg.JPG)
+
+
 # QuadDoggo Project
- QuadDoggo is a  quadruped robot with enhanced mobility such as walking, squatting, and running
+ QuadDoggo is a on going project where the main goal is to learn and reserach quadruped robot design.
+ QuadDoggo is a quadruped robot with enhanced mobility such as walking, squatting, and running. This project is currently in progress and designs are subject to change.
 
 
-## Building the Doggo
+## Current Design 
 
-The Sorting Algorithm Visualizer is a Web app created with React,Javascript,CSS and HTML to display a range of popular sorting algorithms in real time. The current version of the app contains 4 sorting algorithms which are Quicksort, Heapsort, MergeSort and Bubble Sort. The app uses an array filled with random integer values ranging from 0 - 850 and can have a max size between 5 - 200. The Visualizer also has 3 different speeds at which to sort at and the sizes of each integer bar will resize with the appropriate choosen size of the array.
+The current designs uses 8 geared DC motors to control 8 Degrees of Freedom. I am currently developing 1 leg for testing to make sure that the robot can hold itself up. From there, I can calculate the maximum weight that my Doggo can be.
 
+## Version 1 (Servo)
 
-## Motive Behind the Project
+![Servo](https://github.com/shant1235/QuadDoggo/blob/main/photos/version1.JPG)
+
+The first design of the Quad
 
 
 
