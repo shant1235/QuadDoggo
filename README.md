@@ -16,13 +16,17 @@ The current design will uses 8 DC motors in total (2 per leg) where each motor h
 It uses belt pully system with a 1:1 teeth ratio to transfer motion throughout the Doggo's leg. The motor have already been geared down to 32 rpm which is why no additional spped reduction is needed.
 
 
-### Prototype
+### Prototype (Updated 10/13/2020)
+
+
 
 ## Version 1 (Servo)
 
 ![Servo](https://github.com/shant1235/QuadDoggo/blob/main/photos/version1.JPG)
 
 The first design of the QuadDoggo was created with servo-based joints. These joints proved to be too weak for the Doggo and therefore, the Doggo was redesigned to fit requirements. 
+
+### Prototype (Servo)
 
 
 
