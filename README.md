@@ -18,6 +18,9 @@ It uses belt pully system with a 1:1 teeth ratio to transfer motion throughout t
 
 ### Prototype (Updated 10/13/2020)
 
+Version 1 Test | Version 2 Test
+:-------------:|:--------------:
+![Servo Movement](https://github.com/shant1235/QuadDoggo/blob/main/photos/ServoTest.gif)  | ![DC Motor Movement](https://github.com/shant1235/QuadDoggo/blob/main/photos/V2Test.gif)
 
 
 ## Version 1 (Servo)
@@ -28,6 +31,7 @@ The first design of the QuadDoggo was created with servo-based joints. These joi
 
 ### Prototype (Servo)
 
+![Servo First Test](https://github.com/shant1235/QuadDoggo/blob/main/photos/ServoMovingTest.gif)
 
 
 ## Support
