@@ -29,7 +29,7 @@ Now, notice how version 2 has less contained mass but requires less torque to ma
 
 ![Servo](https://github.com/shant1235/QuadDoggo/blob/main/photos/version1.JPG)
 
-The first design of the QuadDoggo was created with servo-based joints. These joints proved to be too weak for the Doggo and therefore, the Doggo was redesigned to fit requirements. 
+The first design of the QuadDoggo was created with servo-based joints. These joints proved to be too weak for the Doggo and therefore, the Doggo was redesigned to fit requirements.
 
 ### Prototype (Servo)
 
