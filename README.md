@@ -35,6 +35,7 @@ The first design of the QuadDoggo was created with servo-based joints. These joi
 
 ![Servo First Test](https://github.com/shant1235/QuadDoggo/blob/main/photos/ServoMovingTest.gif)
 
+First time testing the leg with a Arduino. As you can see, I used a ton of tap to keep the assembly together.
 
 ## Support
 If you have any question or concerns regards this project, please feel free to email me at prashant.mistry@ryerson.ca
