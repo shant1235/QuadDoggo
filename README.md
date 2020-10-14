@@ -22,6 +22,8 @@ Version 1 Test | Version 2 Test
 :-------------:|:--------------:
 ![Servo Movement](https://github.com/shant1235/QuadDoggo/blob/main/photos/ServoTest.gif)  | ![DC Motor Movement](https://github.com/shant1235/QuadDoggo/blob/main/photos/V2Test.gif)
 
+Notice how version 1 requires more torque since most of the motor weight is contained within the leg(I added the blue bag as more weight to keep the leg in place).
+Now, notice how version 2 has less contained mass but requires less torque to manipulate. 
 
 ## Version 1 (Servo)
 
