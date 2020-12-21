@@ -7,6 +7,10 @@ QuadDoggo is a on going project where the main goal is to learn how to develop a
 
 The current design will uses 8 DC motors in total (2 per leg) where each motor has a maximun torque of 4 Nm. I am currently building 1 leg for testing to make sure that the robot can hold itself up. From there, I can calculate the maximum weight of my Doggo and design around that. Below is the current design of the leg that is being produced. 
 
+
+### Wiring Diagram
+![LegDiagram](https://github.com/shant1235/QuadDoggo/blob/main/photos/Leg%20diagram.png)
+
 ### Top view of Leg
 ![LegTop](https://github.com/shant1235/QuadDoggo/blob/main/photos/topViewLeg.JPG)
 
