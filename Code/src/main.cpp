@@ -33,7 +33,7 @@ char rx_byte = 0;
 String rx_str = "";
 
 PID myPID(&newPosition, &motorPower, &setLocation, 500, 1, 25, DIRECT);
-// Best PID : Kp = 500, Ki = 1, Kd = 25 
+// Best PID : Kp = 500, Ki = 1, Kd = 25 hello
 void setup() {
   pinMode(LIMIT_SWITCHA, INPUT);
   myPID.SetMode(AUTOMATIC);
