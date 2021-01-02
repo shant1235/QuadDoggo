@@ -1,0 +1,112 @@
+#include <PID_v1.h>
+#include <Arduino.h>
+
+#include <Encoder.h>
+
+void turnClockWise(double power);
+void turnCounterClockWise(double power);
+void stopRotate();
+void findBounds();
+
+#define LIMIT_SWITCHA 14
+#define CHANNEL_A 3
+#define CHANNEL_B 2
+#define DIR_A 25
+#define PWM_A 24
+
+Encoder myEnc(CHANNEL_A, CHANNEL_B);
+
+double pi = 3.1415;
+double leftLimit = pi/2;
+double newPosition, motorPower;
+double setLocation = 3.14;//   avoid using pins with LEDs attached
+boolean routine = true;
+
+
+PID myPID(&newPosition, &motorPower, &setLocation, 1000, 0, 1, DIRECT);
+// Best PID : Kp = 500, Ki = 1, Kd = 25 hello
+void setup() {
+  pinMode(LIMIT_SWITCHA, INPUT);
+  myPID.SetMode(AUTOMATIC);
+
+  pinMode(CHANNEL_A, INPUT);
+  pinMode(CHANNEL_B, INPUT);
+
+
+
+  pinMode(DIR_A, OUTPUT);
+  pinMode(15, INPUT);
+  myPID.SetMode(AUTOMATIC);
+  myPID.SetOutputLimits(0,255);
+
+  pinMode(PWM_A, OUTPUT);
+  Serial.begin(19200);
+
+
+}
+
+long oldPosition  = -999;
+
+void loop() {
+  //Set axis to limit switch position 
+  if(routine){
+    findBounds();
+    routine=false;
+  }
+  double val = analogRead(15);
+  setLocation = map(val,0,1023,0,2*pi);
+  if(setLocation >= leftLimit){
+    setLocation = leftLimit;
+  }
+  myPID.Compute();
+  double temp = myEnc.read();
+  newPosition = map(temp,0,4435.14,0,2*pi);
+  Serial.print(motorPower);
+  Serial.print(" ");
+  Serial.print(setLocation);
+  Serial.print(" ");
+  Serial.print(newPosition);
+  Serial.print(" ");
+  Serial.println(temp);
+
+   if(newPosition <= setLocation ){
+     myPID.SetControllerDirection(DIRECT);
+
+   turnCounterClockWise(motorPower);
+
+   }else if (newPosition > setLocation){
+          myPID.SetControllerDirection(REVERSE);
+
+  turnClockWise(motorPower);
+
+  }
+
+}
+
+
+
+
+void turnClockWise(double power) {
+
+  digitalWrite(DIR_A, LOW);
+  analogWrite(PWM_A, power);
+}
+void turnCounterClockWise(double power) {
+
+  digitalWrite(DIR_A, HIGH);
+  analogWrite(PWM_A, power);
+}
+void stopRotate() {
+  digitalWrite(DIR_A, LOW);
+  analogWrite(PWM_A, 0);
+}
+
+
+void findBounds() {
+
+  while (digitalRead(LIMIT_SWITCHA) == LOW) {
+    turnClockWise(55);
+  }
+  myEnc.write(0);
+  stopRotate();
+}
