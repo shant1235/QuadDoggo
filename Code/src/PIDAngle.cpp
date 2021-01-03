@@ -17,7 +17,7 @@ double setLocation = 0; //   avoid using pins with LEDs attached
 
 // Best PID : Kp = 500, Ki = 1, Kd = 25 
 PIDAngle::PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out, int limitSwitch, double leftLimit)
-    : _myEnc(CH_A, CH_B), _myPID(&newPosition, &motorPower, &_setLocation, 1000, 0, 1, DIRECT)
+    : _myEnc(CH_A, CH_B), _myPID(&newPosition, &motorPower, &_setLocation, 1000, 25, 1, DIRECT)
 {
 
   _CH_A = CH_A;
@@ -52,13 +52,13 @@ void PIDAngle::moveTo(double setLocation)
   _myPID.Compute();
   double temp = _myEnc.read();
   newPosition = map(temp, 0, 4435.14, 0, 2 * pi);
-  Serial.print(motorPower);
-  Serial.print(" ");
-  Serial.print(_setLocation);
-  Serial.print(" ");
-  Serial.print(newPosition);
-  Serial.print(" ");
-  Serial.println(temp);
+  // Serial.print(motorPower);
+  // Serial.print(" ");
+  // Serial.print(_setLocation);
+  // Serial.print(" ");
+  // Serial.print(newPosition);
+  // Serial.print(" ");
+  // Serial.println(temp);
 
   if (newPosition <= _setLocation)
   {
@@ -101,4 +101,9 @@ void PIDAngle::findBounds()
   }
   _myEnc.write(0);
   stopRotate();
+}
+double PIDAngle::getMotorPower()
+{
+  return {motorPower};
+
 }

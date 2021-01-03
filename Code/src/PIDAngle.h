@@ -16,6 +16,7 @@ public:
     void turnCounterClockWise(double power);
     void stopRotate();
     void findBounds();
+    double getMotorPower();
 
 private:
     int _CH_A ; 
