@@ -31,6 +31,7 @@ PIDAngle::PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out, int limitSwitch, do
 
   pinMode(_limitSwitch, INPUT);
   _myPID.SetMode(AUTOMATIC);
+  _myPID.SetOutputLimits(0,200);
 
   pinMode(_CH_A, INPUT);
   pinMode(_CH_B, INPUT);
