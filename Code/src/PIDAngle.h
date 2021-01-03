@@ -17,6 +17,8 @@ public:
     void stopRotate();
     void findBounds();
     double getMotorPower();
+    double getSetLocation();
+    double getPosition();
 
 private:
     int _CH_A ; 
