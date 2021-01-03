@@ -5,7 +5,7 @@
 
 #include <Encoder.h>
 
-PIDAngle myPIDAngle1(3, 2, 19, 18, 14, PI / 2);
+//PIDAngle myPIDAngle1(3, 2, 19, 18, 14, PI / 2);
 PIDAngle myPIDAngle2(5, 4, 29, 28, 16, PI);
 
 boolean routine = true;
@@ -20,7 +20,7 @@ void loop()
 {
   if (routine)
   {
-    myPIDAngle1.findBounds();
+    //myPIDAngle1.findBounds();
     myPIDAngle2.findBounds();
     routine = false;
   }
@@ -32,13 +32,13 @@ void loop()
   Serial.print(" ");
   Serial.print(jointAngle1);
   Serial.print(" ");
-  //Serial.print(2*PI + jointAngle2);
+  Serial.print(2*PI + jointAngle2);
   Serial.print(" ");
-  Serial.print(myPIDAngle1.getMotorPower());
+  //Serial.print(myPIDAngle1.getMotorPower());
   Serial.print(" ");
-  //Serial.print(myPIDAngle2.getMotorPower());
+  Serial.print(myPIDAngle2.getMotorPower());
   Serial.println(" ");
-  myPIDAngle2.moveTo(2*PI +jointAngle2);
+  myPIDAngle2.moveTo(PI);
   //myPIDAngle1.moveTo(jointAngle1);
 
 }
