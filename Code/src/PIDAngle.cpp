@@ -17,7 +17,7 @@ double setLocation = 0; //   avoid using pins with LEDs attached
 
 // Best PID : Kp = 500, Ki = 1, Kd = 25 
 PIDAngle::PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out, int limitSwitch, double leftLimit)
-    : _myEnc(CH_A, CH_B), _myPID(&newPosition, &motorPower, &_setLocation, 150, 100, 0, DIRECT)
+    : _myEnc(CH_A, CH_B), _myPID(&newPosition, &motorPower, &_setLocation, 150, 0, 0, DIRECT)
 {
 
   _CH_A = CH_A;
@@ -62,7 +62,7 @@ void PIDAngle::moveTo(double setLocation)
   // Serial.print(" ");
   // Serial.println(temp);
 
-  if (newPosition < _setLocation)
+  if (newPosition <= _setLocation)
   {
 
     _myPID.SetControllerDirection(DIRECT);
