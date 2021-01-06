@@ -10,7 +10,7 @@
 class PIDAngle
 {
 public:
-    PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out,int limitSwitch, double leftLimit);
+    PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out,int limitSwitch, double leftLimit, boolean reverse);
     void moveTo(double setLocation);
     void turnClockWise(double power);
     void turnCounterClockWise(double power);
@@ -28,6 +28,11 @@ private:
     int _limitSwitch ; 
     double _leftLimit;
     double _setLocation;
+    double _newPosition;
+    double _motorPower;
+    double _temp;
+    boolean _reverse;
+
     PID _myPID;
     Encoder _myEnc;
 

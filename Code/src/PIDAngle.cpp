@@ -12,12 +12,10 @@
 // #define PWM_A 24
 
 double pi = 3.14;
-double newPosition, motorPower;
-double setLocation = 0; //   avoid using pins with LEDs attached
 
-// Best PID : Kp = 500, Ki = 1, Kd = 25 
-PIDAngle::PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out, int limitSwitch, double leftLimit)
-    : _myEnc(CH_A, CH_B), _myPID(&newPosition, &motorPower, &_setLocation, 150, 0, 0, DIRECT)
+// Best PID : Kp = 500, Ki = 1, Kd = 25
+PIDAngle::PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out, int limitSwitch, double leftLimit, boolean reverse)
+    : _myEnc(CH_A, CH_B), _myPID(&_newPosition, &_motorPower, &_setLocation, 500, 0, 0, DIRECT)
 {
 
   _CH_A = CH_A;
@@ -25,13 +23,13 @@ PIDAngle::PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out, int limitSwitch, do
   _Dir = Dir;
   _pwm_out = pwm_out;
   _leftLimit = leftLimit;
-  _setLocation = setLocation;
   _limitSwitch = limitSwitch;
- 
+  _reverse = reverse;
 
   pinMode(_limitSwitch, INPUT);
   _myPID.SetMode(AUTOMATIC);
-  _myPID.SetOutputLimits(0,200);
+  _myPID.SetOutputLimits(0, 200);
+  //_myPID.SetSampleTime(400);
 
   pinMode(_CH_A, INPUT);
   pinMode(_CH_B, INPUT);
@@ -51,9 +49,9 @@ void PIDAngle::moveTo(double setLocation)
     _setLocation = _leftLimit;
   }
   _myPID.Compute();
-  double temp = _myEnc.read();
-  newPosition = map(temp, 0, 4435.14, 0, 2 * pi);
-  newPosition =  floorf(newPosition * 100) / 100;
+  _temp = _myEnc.read();
+  _newPosition = map(_temp, 0, 4435.14, 0, 2 * pi);
+  _newPosition = floorf(_newPosition * 100) / 100;
   // Serial.print(motorPower);
   // Serial.print(" ");
   // Serial.print(_setLocation);
@@ -62,32 +60,58 @@ void PIDAngle::moveTo(double setLocation)
   // Serial.print(" ");
   // Serial.println(temp);
 
-  if (newPosition <= _setLocation)
+  if (_newPosition <= _setLocation)
   {
-
-    _myPID.SetControllerDirection(DIRECT);
-
-    turnCounterClockWise(motorPower);
+    if (_reverse)
+    {
+      _myPID.SetControllerDirection(DIRECT);
+      turnClockWise(_motorPower);
+    }
+    else
+    {
+      _myPID.SetControllerDirection(DIRECT);
+      turnCounterClockWise(_motorPower);
+    }
   }
-  else if (newPosition > _setLocation)
+  else if (_newPosition > _setLocation)
   {
-
-    _myPID.SetControllerDirection(REVERSE);
-
-    turnClockWise(motorPower);
+    if (_reverse)
+    {
+      _myPID.SetControllerDirection(REVERSE);
+      turnCounterClockWise(_motorPower);
+    }
+    else
+    {
+      _myPID.SetControllerDirection(REVERSE);
+      turnClockWise(_motorPower);
+    }
   }
 }
 
 void PIDAngle::turnClockWise(double power)
 {
 
-  digitalWrite(_Dir, LOW);
+  if (_reverse)
+  {
+    digitalWrite(_Dir, HIGH);
+  }
+  else
+  {
+    digitalWrite(_Dir, LOW);
+  }
   analogWrite(_pwm_out, power);
 }
 void PIDAngle::turnCounterClockWise(double power)
 {
 
-  digitalWrite(_Dir, HIGH);
+  if (_reverse)
+  {
+    digitalWrite(_Dir, LOW);
+  }
+  else
+  {
+    digitalWrite(_Dir, HIGH);
+  }
   analogWrite(_pwm_out, power);
 }
 void PIDAngle::stopRotate()
@@ -101,23 +125,21 @@ void PIDAngle::findBounds()
 
   while (digitalRead(_limitSwitch) == LOW)
   {
-    turnClockWise(55);
+    digitalWrite(_Dir, LOW);
+    analogWrite(_pwm_out, 55);
   }
   _myEnc.write(0);
   stopRotate();
 }
 double PIDAngle::getMotorPower()
 {
-  return motorPower;
-
+  return _motorPower;
 }
 double PIDAngle::getSetLocation()
 {
   return _setLocation;
-
 }
 double PIDAngle::getPosition()
 {
-  return newPosition;
-
+  return _newPosition;
 }
