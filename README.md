@@ -1,11 +1,14 @@
 ![Doggo](https://github.com/shant1235/QuadDoggo/blob/main/photos/version2.JPG)
 # QuadDoggo Project
  
-QuadDoggo is a on going project where the main goal is to learn how to develop and design qudrauped robot. QuadDoggo is a quadruped robot with enhanced mobility such as  walking,squatting, and running. This project is currently in progress and designs are subject to change.
+QuadDoggo is a ongoing project where the main goal is to learn how to develop and design quadruped robots. QuadDoggo is a quadruped robot with enhanced mobility such as walking, squatting, and running. This project is currently in progress and designs are subject to change.
  
 ## Current Design 
 
-The current design will uses 8 DC motors in total (2 per leg) where each motor has a maximun torque of 4 Nm. I am currently building 1 leg for testing to make sure that the robot can hold itself up. From there, I can calculate the maximum weight of my Doggo and design around that. Below is the current design of the leg that is being produced. 
+The current design will use 8 DC motors in total (2 per leg) where each motor has a maximum torque of 4 Nm. I am currently building a single leg for testing to make sure that the robot can hold itself up. From there, I can calculate the maximum weight of my Doggo and design around that. Below is the current design of the leg that is being produced. 
+# Current Progress
+
+
 
 
 ### Wiring Diagram
