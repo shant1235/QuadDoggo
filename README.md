@@ -6,9 +6,20 @@ QuadDoggo is a ongoing project where the main goal is to learn how to develop an
 ## Current Design 
 
 The current design will use 8 DC motors in total (2 per leg) where each motor has a maximum torque of 4 Nm. I am currently building a single leg for testing to make sure that the robot can hold itself up. From there, I can calculate the maximum weight of my Doggo and design around that. Below is the current design of the leg that is being produced. 
-# Current Progress
+### Current Progress (Programming and Reiteration) 
+Currently, I'm having trouble programming in precise movement with Inverse Kinematics. Here is a quick display of my current progress with a Kp(High), Ki(Low), and Kd(Med).
+
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="https://user-images.githubusercontent.com/43391228/113492821-74cde800-94a8-11eb-80f8-bab078f60782.png">
+    <source src="https://user-images.githubusercontent.com/43391228/113492821-74cde800-94a8-11eb-80f8-bab078f60782.mp4" type="video/mp4">
+  </video>
+</figure>
 
 
+As you can see, the movement is very imprecise, yet it still manages to make fluent movements due to the built in PID. To try and isolate the error, I have created another robot arm which is more mechanically reliable. Now I can focus solely on programming without worrying about belt tensioning, motor shaft play and space restrictions.  
+
+![IMG_20210114_162804](https://user-images.githubusercontent.com/43391228/113493143-d7c07e80-94aa-11eb-819d-afaf7307742c.jpg)
+![IMG_20210114_162743](https://user-images.githubusercontent.com/43391228/113493141-d68f5180-94aa-11eb-85fb-f96343788277.jpg)
 
 
 ### Wiring Diagram
