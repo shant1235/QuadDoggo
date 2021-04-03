@@ -9,11 +9,9 @@ The current design will use 8 DC motors in total (2 per leg) where each motor ha
 ### Current Progress (Programming and Reiteration) 
 Currently, I'm having trouble programming in precise movement with Inverse Kinematics. Here is a quick display of my current progress with a Kp(High), Ki(Low), and Kd(Med).
 
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="https://user-images.githubusercontent.com/43391228/113492821-74cde800-94a8-11eb-80f8-bab078f60782.png">
-    <source src="https://user-images.githubusercontent.com/43391228/113492821-74cde800-94a8-11eb-80f8-bab078f60782.mp4" type="video/mp4">
-  </video>
-</figure>
+
+https://user-images.githubusercontent.com/43391228/113493333-5bc73600-94ac-11eb-97a0-0ef73c14320b.mp4
+
 
 
 As you can see, the movement is very imprecise, yet it still manages to make fluent movements due to the built in PID. To try and isolate the error, I have created another robot arm which is more mechanically reliable. Now I can focus solely on programming without worrying about belt tensioning, motor shaft play and space restrictions.  
