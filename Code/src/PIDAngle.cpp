@@ -15,7 +15,7 @@ double pi = 3.14;
 
 // Best PID : Kp = 500, Ki = 1, Kd = 25
 PIDAngle::PIDAngle(int CH_A, int CH_B, int Dir, int pwm_out, int limitSwitch, double leftLimit, boolean reverse)
-    : _myEnc(CH_A, CH_B), _myPID(&_newPosition, &_motorPower, &_setLocation, 500, 0, 0, DIRECT)
+    : _myEnc(CH_A, CH_B), _myPID(&_newPosition, &_motorPower, &_setLocation, 10, 5, 0, DIRECT)
 {
 
   _CH_A = CH_A;
@@ -50,15 +50,16 @@ void PIDAngle::moveTo(double setLocation)
   }
   _myPID.Compute();
   _temp = _myEnc.read();
+  
   _newPosition = map(_temp, 0, 4435.14, 0, 2 * pi);
   _newPosition = floorf(_newPosition * 100) / 100;
-  // Serial.print(motorPower);
-  // Serial.print(" ");
-  // Serial.print(_setLocation);
-  // Serial.print(" ");
-  // Serial.print(newPosition);
-  // Serial.print(" ");
-  // Serial.println(temp);
+  Serial.print(_motorPower);
+  Serial.print(" ");
+  Serial.print(_setLocation);
+  Serial.print(" ");
+  Serial.print(_newPosition);
+  Serial.print(" ");
+  Serial.println(_temp);
 
   if (_newPosition <= _setLocation)
   {
@@ -79,6 +80,8 @@ void PIDAngle::moveTo(double setLocation)
     {
       _myPID.SetControllerDirection(REVERSE);
       turnCounterClockWise(_motorPower);
+        Serial.println("true");
+
     }
     else
     {
@@ -93,11 +96,11 @@ void PIDAngle::turnClockWise(double power)
 
   if (_reverse)
   {
-    digitalWrite(_Dir, HIGH);
+    digitalWrite(_Dir, LOW);
   }
   else
   {
-    digitalWrite(_Dir, LOW);
+    digitalWrite(_Dir, HIGH);
   }
   analogWrite(_pwm_out, power);
 }
@@ -106,11 +109,11 @@ void PIDAngle::turnCounterClockWise(double power)
 
   if (_reverse)
   {
-    digitalWrite(_Dir, LOW);
+    digitalWrite(_Dir, HIGH);
   }
   else
   {
-    digitalWrite(_Dir, HIGH);
+    digitalWrite(_Dir, LOW);
   }
   analogWrite(_pwm_out, power);
 }
@@ -122,11 +125,14 @@ void PIDAngle::stopRotate()
 
 void PIDAngle::findBounds()
 {
-
-  while (digitalRead(_limitSwitch) == LOW)
+  int val = digitalRead(_limitSwitch);
+  while (val == 0)
   {
+    val = digitalRead(_limitSwitch);
+    Serial.print(val);
     digitalWrite(_Dir, LOW);
     analogWrite(_pwm_out, 55);
+    delay(10);
   }
   _myEnc.write(0);
   stopRotate();
